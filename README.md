@@ -35,10 +35,10 @@ I picked the weights using the first 150 months, then scored them on the last 51
 
 ## What I found
 
-- **The optimiser overfits.** Its Sharpe ratio fell from 1.37 to 0.77 on unseen data. It leaned on the stocks that happened to do well in the first 150 months, and that didn't carry on.
-- **Equal weight did best in this window.** It beat both optimised portfolios on Sharpe ratio. I wouldn't read this as equal weight being better in general. See the limitations below.
-- **Min variance did what it's built to do, but not what I expected.** It had the lowest volatility out-of-sample, but I'd guessed it would hold up better than max-Sharpe, and it did worse. Its biggest holdings were defensive stocks (MRK, VZ, PG, WMT, MCD), which is consistent with it missing out on the strong run in growth and tech stocks, though I haven't tested that directly.
-- **Its volatility also drifted.** Min variance predicted about 10.4% and delivered about 12.6%, so even the covariance matrix wasn't fully stable across the split.
+-**The optimiser overfits.** Its Sharpe ratio dropped from 1.37 in-sample to 0.77 out-of-sample. It probably leaned on stocks that happened to do well in the first 150 months, and most of that edge disappeared on unseen data.
+-**Equal weight is a tough benchmark.** Splitting the money evenly across all 30 stocks did best out-of-sample, beating both optimisers on Sharpe ratio. I wouldn’t claim it’s better in general, but it shows how hard it is to beat basic diversification.
+-**Min variance did what it’s built to do, at a cost.** It had the lowest out-of-sample volatility (12.6%) but also the lowest return (10.6%). Its holdings at the 10% cap included defensive stocks like MRK, VZ, PG, WMT and MCD, which fits with it missing the run in tech. (Change this to a firmer statement once you’ve checked the weights.)
+-**Risk wasn’t stable either.** It predicted 10.4% volatility and delivered 12.6%. Some of that gap is expected, since the optimiser picks whatever looks calmest on the training data, but it also suggests the correlations between stocks shifted.
 
 ## Limitations
 
